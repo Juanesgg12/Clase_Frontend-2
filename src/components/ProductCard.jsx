@@ -1,3 +1,4 @@
+
 function ProductCard(  name, price, description, image, category) {
 return ( 
     <article className="product-card">
