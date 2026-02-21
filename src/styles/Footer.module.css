@@ -1,10 +1,20 @@
 .footer {
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem 2rem;
   text-align: center;
-  color: white;
+  border-top: 1px solid var(--border);
+  background: var(--bg-surface);
+  margin-top: auto;
 }
 
 .text {
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: var(--gray-400);
+  letter-spacing: 0.03em;
+}
+
+.text strong {
+  color: var(--primary);
+  font-weight: 600;
 }

@@ -1,47 +1,120 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  flex: 1;
 }
 
+/* ─── Header ─────────────────────────────────────────────── */
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+/* Línea decorativa superior */
+.header::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 12px var(--primary-glow);
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1f2937;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+/* Palabra resaltada en ámbar — aplica en el JSX con <em> o <span> si quieres */
+.title em {
+  font-style: normal;
+  color: var(--primary-light);
 }
 
 .subtitle {
-  font-size: 1.125rem;
-  color: #e8edf7;
-  max-width: 600px;
+  font-size: 1rem;
+  color: var(--gray-500);
+  max-width: 520px;
   margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+/* ─── Toolbar ────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
   margin-bottom: 2rem;
 }
 
-/* Responsive */
+.btnAdd {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.375rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.btnAdd:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btnAdd:active {
+  transform: translateY(0);
+}
+
+.btnAdd:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 3px;
+}
+
+/* ─── Grid ───────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
 
-  .title {
-    font-size: 2rem;
+  .header {
+    margin-bottom: 2.5rem;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .toolbar {
+    justify-content: stretch;
+  }
+
+  .btnAdd {
+    width: 100%;
+    justify-content: center;
   }
 }
