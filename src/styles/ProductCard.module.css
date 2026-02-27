@@ -119,6 +119,7 @@
   font-size: 0.825rem;
   font-weight: 600;
   color: var(--gray-500);
+  cursor: pointer;
   transition: all var(--transition-fast);
 }
 
@@ -153,12 +154,14 @@
 
 .btnEdit,
 .btnDelete {
+  flex: 1;
   border: none;
   padding: 0.5rem 0.875rem;
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+  cursor: pointer;
   transition: all var(--transition-fast);
 }
 
@@ -185,4 +188,4 @@
   background: var(--danger);
   color: #fff;
   border-color: var(--danger);
-} 
+}

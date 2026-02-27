@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import styles from "../styles/ProductForm.module.css";
 
 const emptyValues = {
@@ -14,7 +13,7 @@ const emptyValues = {
 function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
   const [values, setValues] = useState(emptyValues);
 
-  // useEffect: si cambia initialValues (prop), precargamos el formulario
+  // Cuando cambia initialValues (prop), precargamos o limpiamos el formulario
   useEffect(() => {
     if (initialValues) {
       setValues({
@@ -32,8 +31,6 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    // prev = estado anterior del formulario (NO es prop)
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -44,7 +41,6 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
     const category = values.category.trim();
     const image = values.image.trim();
     const description = values.description.trim();
-
     const price = Number(values.price);
     const stock = Number(values.stock);
 
@@ -153,7 +149,7 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
         </label>
 
         <div className={styles.actions}>
-          {onCancel ? (
+          {onCancel && (
             <button
               className={styles.btnSecondary}
               type="button"
@@ -161,8 +157,7 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
             >
               Cancelar
             </button>
-          ) : null}
-
+          )}
           <button className={styles.btnPrimary} type="submit">
             {isEditing ? "Guardar cambios" : "Agregar producto"}
           </button>
