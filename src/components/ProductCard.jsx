@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/ProductCard.module.css";
 
-function ProductCard({ name, price, stock, description, image, category, onEdit, onDelete }) {
+function ProductCard({ name, price, stock, rating, description, image, category, onDetails, onEdit, onDelete }) {
   // BUG FIX: era { likes, setLikes } con llaves en vez de corchetes
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
@@ -22,6 +22,9 @@ function ProductCard({ name, price, stock, description, image, category, onEdit,
       <div className={styles.productInfo}>
         <span className={styles.productCategory}>{category}</span>
         <h3 className={styles.productName}>{name}</h3>
+        {Number.isFinite(Number(rating)) ? (
+            <p className={styles.productRating}>⭐ Calificacion:  {Number(rating)}</p>
+        ) : null}
         {/* BUG FIX: era classname en minúscula */}
         <p className={styles.productStock}>Stock: {stock}</p>
         <p className={styles.productDescription}>{description}</p>
@@ -39,8 +42,13 @@ function ProductCard({ name, price, stock, description, image, category, onEdit,
         </div>
       </div>
 
-      {(onEdit || onDelete) && (
+      {(onDetails || onEdit || onDelete) && (
         <div className={styles.cardActions}>
+          {onDetails && (
+            <button type="button" className={styles.btnDetails} onClick={onDetails}>
+              ℹ️ Más información
+            </button>
+          )}
           {onEdit && (
             <button type="button" className={styles.btnEdit} onClick={onEdit}>
               ✏️ Editar
