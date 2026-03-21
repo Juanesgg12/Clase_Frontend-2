@@ -35,7 +35,7 @@ function Navbar({ activePage, onNavigate, user, onSignIn, onSignOut, cartItemCou
         >
           Carrito
           {cartItemCount > 0 ? (
-            <span className={styles.badge}>{cartItemCount}</span>
+            <span key={cartItemCount} className={styles.badge}>{cartItemCount}</span>
           ) : null}
         </button>
       </div>
