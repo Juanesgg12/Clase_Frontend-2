@@ -1,8 +1,21 @@
-import { useState } from "react";
-import styles from "../styles/ProductCard.module.css";
+import { useState } from 'react';
 
-function ProductCard({ name, price, stock, rating, description, image, category, onDetails, onEdit, onDelete }) {
-  // BUG FIX: era { likes, setLikes } con llaves en vez de corchetes
+import styles from '../styles/ProductCard.module.css';
+
+function ProductCard({
+  name,
+  category,
+  price,
+  stock,
+  image,
+  description,
+  rating,
+  onDetails,
+  onEdit,
+  onDelete,
+  onAddToCart,
+  disableAddToCart,
+}) {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -23,44 +36,53 @@ function ProductCard({ name, price, stock, rating, description, image, category,
         <span className={styles.productCategory}>{category}</span>
         <h3 className={styles.productName}>{name}</h3>
         {Number.isFinite(Number(rating)) ? (
-            <p className={styles.productRating}>⭐ Calificacion:  {Number(rating)}</p>
+          <p className={styles.productRating}>Calificación: {Number(rating)}/5</p>
         ) : null}
-        {/* BUG FIX: era classname en minúscula */}
-        <p className={styles.productStock}>Stock: {stock}</p>
         <p className={styles.productDescription}>{description}</p>
+        <p className={styles.productStock}>Stock: {stock}</p>
         <div className={styles.productFooter}>
-          <span className={styles.productPrice}>
-            ${price.toLocaleString("es-CL")}
-          </span>
+          <span className={styles.productPrice}>{price}</span>
           <button
-            className={`${styles.btnLike} ${isLiked ? styles.liked : ""}`}
-            type="button"
+            className={`${styles.btnLike} ${isLiked ? styles.liked : ''}`}
             onClick={handleLike}
           >
-            {isLiked ? "❤️" : "🤍"} {likes}
+            {isLiked ? '❤️' : '🤍'} {likes} Me gusta
           </button>
         </div>
-      </div>
 
-      {(onDetails || onEdit || onDelete) && (
-        <div className={styles.cardActions}>
-          {onDetails && (
-            <button type="button" className={styles.btnDetails} onClick={onDetails}>
-              ℹ️ Más información
-            </button>
-          )}
-          {onEdit && (
-            <button type="button" className={styles.btnEdit} onClick={onEdit}>
-              ✏️ Editar
-            </button>
-          )}
-          {onDelete && (
-            <button type="button" className={styles.btnDelete} onClick={onDelete}>
-              🗑️ Eliminar
-            </button>
-          )}
-        </div>
-      )}
+        {onAddToCart ? (
+          <button
+            type="button"
+            className={styles.btnAddToCart}
+            onClick={onAddToCart}
+            disabled={disableAddToCart}
+          >
+            {disableAddToCart ? 'Sin stock disponible' : '🛒 Agregar al carrito'}
+          </button>
+        ) : null}
+
+        {onDetails || onEdit || onDelete ? (
+          <div className={styles.cardActions}>
+            {onDetails ? (
+              <button type="button" className={styles.btnDetails} onClick={onDetails}>
+                Más información
+              </button>
+            ) : null}
+
+            {onEdit ? (
+              <button type="button" className={styles.btnEdit} onClick={onEdit}>
+                Editar
+              </button>
+            ) : null}
+
+            {onDelete ? (
+              <button type="button" className={styles.btnDelete} onClick={onDelete}>
+                Eliminar
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
     </article>
   );
 }

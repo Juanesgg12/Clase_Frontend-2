@@ -1,0 +1,190 @@
+/* ─── Container ──────────────────────────────────────────── */
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ─── Icon ───────────────────────────────────────────────── */
+.icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ─── Title ──────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0;
+}
+
+/* ─── Subtitle ───────────────────────────────────────────── */
+.subtitle {
+  font-size: 1rem;
+  color: var(--gray-500);
+  text-align: center;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0;
+}
+
+/* ─── Card ───────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+  border-radius: 0 2px 2px 0;
+}
+
+/* ─── Card Title ─────────────────────────────────────────── */
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 1rem;
+  padding-left: 0.75rem;
+}
+
+/* ─── Info Row ───────────────────────────────────────────── */
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.infoRow span:first-child {
+  color: var(--gray-500);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.infoRow span:last-child {
+  color: var(--gray-800);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ─── Item List ──────────────────────────────────────────── */
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─── Item ───────────────────────────────────────────────── */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.item span:first-child {
+  color: var(--gray-600);
+}
+
+.item span:last-child {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--primary-light);
+}
+
+/* ─── Total Row ──────────────────────────────────────────── */
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--gray-900);
+}
+
+.totalRow span:last-child {
+  color: var(--primary-light);
+}
+
+/* ─── Back Home Button ───────────────────────────────────── */
+.btnHome {
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.btnHome:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btnHome:active {
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+}

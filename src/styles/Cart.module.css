@@ -1,0 +1,297 @@
+/* ─── Container ──────────────────────────────────────────── */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  flex: 1;
+}
+
+/* ─── Title ──────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* ─── Empty ──────────────────────────────────────────────── */
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  background: var(--bg-surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  color: var(--gray-400);
+}
+
+/* ─── Item List ──────────────────────────────────────────── */
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ─── Item ───────────────────────────────────────────────── */
+.item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.375rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: border-color var(--transition-med), box-shadow var(--transition-med);
+}
+
+.item:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ─── Item Image ─────────────────────────────────────────── */
+.itemImage {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  filter: brightness(0.9) saturate(0.85);
+}
+
+/* ─── Item Info ──────────────────────────────────────────── */
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.itemName {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.01em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemPrice {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+/* ─── Quantity Controls ──────────────────────────────────── */
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.btnQty {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  line-height: 1;
+}
+
+.btnQty:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+}
+
+.btnQty:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quantity {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+/* ─── Item Subtotal ──────────────────────────────────────── */
+.itemSubtotal {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ─── Remove Button ──────────────────────────────────────── */
+.btnRemove {
+  background: rgba(229, 62, 62, 0.1);
+  border: 1px solid rgba(229, 62, 62, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #f87171;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.btnRemove:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+/* ─── Summary ────────────────────────────────────────────── */
+.summary {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.25rem;
+}
+
+.summaryTotal span:last-child {
+  color: var(--primary-light);
+}
+
+/* ─── Summary Actions ────────────────────────────────────── */
+.summaryActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btnClear {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btnClear:hover {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: rgba(229, 62, 62, 0.3);
+  color: #f87171;
+}
+
+.btnCheckout {
+  flex: 2;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.btnCheckout:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btnCheckout:active {
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .item {
+    flex-wrap: wrap;
+    gap: 0.875rem;
+  }
+
+  .itemSubtotal {
+    order: 3;
+    min-width: auto;
+  }
+
+  .btnRemove {
+    order: 4;
+  }
+
+  .summaryActions {
+    flex-direction: column;
+  }
+}

@@ -8,12 +8,13 @@ const emptyValues = {
   stock: "",
   image: "",
   description: "",
+  rating: "",
 };
 
 function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
   const [values, setValues] = useState(emptyValues);
 
-  // Cuando cambia initialValues (prop), precargamos o limpiamos el formulario
+  // useEffect: si cambia initialValues (prop), precargamos el formulario
   useEffect(() => {
     if (initialValues) {
       setValues({
@@ -23,6 +24,7 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
         stock: initialValues.stock ?? "",
         image: initialValues.image ?? "",
         description: initialValues.description ?? "",
+        rating: initialValues.rating ?? "",
       });
     } else {
       setValues(emptyValues);
@@ -34,23 +36,21 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-   const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const name = values.name.trim();
     const category = values.category.trim();
     const image = values.image.trim();
     const description = values.description.trim();
-
     const price = Number(values.price);
     const stock = Number(values.stock);
-
-    const parsedRating = Number(initialValues?.rating ?? 3);
-    const rating = Number.isFinite(parsedRating) ? Math.min(5, Math.max(1, parsedRating)) : 3;
+    const rating = Number(values.rating);
 
     if (!name) return;
     if (!Number.isFinite(price) || price <= 0) return;
     if (!Number.isFinite(stock) || stock < 0) return;
+    if (!Number.isFinite(rating) || rating < 1 || rating > 5) return;
 
     onSubmit({
       ...initialValues,
@@ -75,13 +75,15 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
           {isEditing ? "Editar producto" : "Agregar producto"}
         </h2>
         <p className={styles.subtitle}>
-          Completa el formulario y guarda los cambios.
+          {isEditing
+            ? "Modificá los campos que querés actualizar."
+            : "Completá el formulario para agregar un nuevo producto."}
         </p>
       </header>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.field}>
-          <span className={styles.label}>Nombre</span>
+          <span className={styles.label}>Nombre *</span>
           <input
             className={styles.input}
             name="name"
@@ -104,7 +106,7 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
 
         <div className={styles.row}>
           <label className={styles.field}>
-            <span className={styles.label}>Precio</span>
+            <span className={styles.label}>Precio *</span>
             <input
               className={styles.input}
               name="price"
@@ -117,7 +119,7 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
           </label>
 
           <label className={styles.field}>
-            <span className={styles.label}>Stock</span>
+            <span className={styles.label}>Stock *</span>
             <input
               className={styles.input}
               name="stock"
@@ -138,6 +140,20 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
             value={values.image}
             onChange={handleChange}
             placeholder="https://..."
+          />
+        </label>
+
+        <label className={styles.field}>
+          <span className={styles.label}>Rating (1-5)</span>
+          <input
+            className={styles.input}
+            name="rating"
+            type="number"
+            min="1"
+            max="5"
+            value={values.rating}
+            onChange={handleChange}
+            placeholder="Ej: 4.5"
           />
         </label>
 
@@ -164,7 +180,7 @@ function ProductForm({ initialValues, onSubmit, onCancel, isEditing = false }) {
             </button>
           )}
           <button className={styles.btnPrimary} type="submit">
-            {isEditing ? "Guardar cambios" : "Agregar producto"}
+            {isEditing ? "💾 Guardar cambios" : "➕ Agregar producto"}
           </button>
         </div>
       </form>
